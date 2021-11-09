@@ -133,12 +133,12 @@ const Home=()=> {
                     data.map(item=>{
                         return(
                             <div className="card home-card" key={item._id}>
-                                <div style={{display:"flex"}}>
-                                <img style={{width:"40px",height:"40px"}} src={item.postedBy.pic}/>
+                                <div style={{display:"flex", alignItems: "center"}}>
+                                <img cla style={{width:"40px",height:"40px", borderRadius:"50px", margin: "10px 0 0 10px"}} src={item.postedBy.pic}/>
                                 <h5
                                 style={{margin:"6px"}}
                                 >
-                                    <Link to={item.postedBy._id !== state._id ? "/profile/"+item.postedBy._id : "/profile"}>
+                                    <Link className="profile__name" to={item.postedBy._id !== state._id ? "/profile/"+item.postedBy._id : "/profile"}>
                                     {item.postedBy.name} 
                                     </Link>
                                     {item.postedBy._id == state._id
