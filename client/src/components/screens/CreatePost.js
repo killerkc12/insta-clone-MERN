@@ -11,7 +11,7 @@ const CreatePost =()=> {
     
     useEffect(()=>{
         if(url){
-            fetch("/createpost",{
+            fetch(`${process.env.REACT_APP_SERVER_BASE_URL}/createpost`,{
                 method:"post",
                 headers:{
                     "Content-Type":"application/json",

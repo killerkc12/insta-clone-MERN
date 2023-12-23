@@ -38,7 +38,7 @@ const Signup = ()=>{
             M.toast({html:'Invalid Email',classes:"#f44336 red"})
             return
         }
-        fetch("/signup",{
+        fetch(`${process.env.REACT_APP_SERVER_BASE_URL}/signup`,{
             method:"post",
             headers:{
                 "Content-Type":"application/json"

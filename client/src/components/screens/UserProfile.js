@@ -9,19 +9,20 @@ const UserProfile =()=> {
     const [showfollow,setShowfollow] = useState(state?!state.following.includes(userid):true)
     console.log(userid)
    useEffect(()=>{
-        fetch(`/user/${userid}`,{
-            headers:{
-                "Authorization":"Bearer "+localStorage.getItem("jwt")
-            }
-        }).then(res=>res.json())
-        .then(result=>{
-            console.log(result)
-            setProfile(result)
+        fetch(`${process.env.REACT_APP_SERVER_BASE_URL}/user/${userid}`, {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("jwt"),
+          },
         })
+          .then((res) => res.json())
+          .then((result) => {
+            console.log(result);
+            setProfile(result);
+          });
    },[])
 
    const followUser=()=>{
-       fetch('/follow',{
+       fetch(`${process.env.REACT_APP_SERVER_BASE_URL}/follow`,{
            method:"put",
            headers:{
                "Content-Type":"application/json",
@@ -48,7 +49,7 @@ const UserProfile =()=> {
        })
    }
    const unfollowUser=()=>{
-       fetch('/unfollow',{
+       fetch(`${process.env.REACT_APP_SERVER_BASE_URL}/unfollow`,{
            method:"put",
            headers:{
                "Content-Type":"application/json",

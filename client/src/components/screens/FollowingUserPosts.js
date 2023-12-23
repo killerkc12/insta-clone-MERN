@@ -6,7 +6,7 @@ const FollowingUserPosts=()=> {
     const [data,setData] = useState([])
     const {state,dispatch} = useContext(UserContext)
     useEffect(()=>{
-        fetch('/getfollowingpost',{
+        fetch(`${process.env.REACT_APP_SERVER_BASE_URL}/getfollowingpost`,{
             headers:{
                 "Authorization":"Bearer "+localStorage.getItem("jwt")
             }
@@ -18,7 +18,7 @@ const FollowingUserPosts=()=> {
     },[])
 
     const likePost=(id)=>{
-        fetch('/like',{
+        fetch(`${process.env.REACT_APP_SERVER_BASE_URL}/like`,{
             method:"put",
             headers:{
                 "Content-Type":"application/json",
@@ -44,7 +44,7 @@ const FollowingUserPosts=()=> {
     }
 
     const unlikePost=(id)=>{
-        fetch('/unlike',{
+        fetch(`${process.env.REACT_APP_SERVER_BASE_URL}/unlike`,{
             method:"put",
             headers:{
                 "Content-Type":"application/json",
@@ -70,7 +70,7 @@ const FollowingUserPosts=()=> {
     }
 
     const makeComment=(text,postId)=>{
-        fetch('/comment',{
+        fetch(`${process.env.REACT_APP_SERVER_BASE_URL}/comment`,{
             method:"put",
             headers:{
                 "Content-Type":"application/json",
@@ -96,23 +96,24 @@ const FollowingUserPosts=()=> {
     }
 
     const deletePost=(postId)=>{
-        fetch(`/deletepost/${postId}`,{
-            method:"delete",
-            headers:{
-                "Authorization":"Bearer "+localStorage.getItem("jwt")
-            }
-        }).then(res=>res.json())
-        .then(result=>{
-            console.log(result)
-            const newData = data.filter(item=>{
-                return item._id!=result._id
-            })
-            setData(newData)
+        fetch(`${process.env.REACT_APP_SERVER_BASE_URL}/deletepost/${postId}`, {
+          method: "delete",
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("jwt"),
+          },
         })
+          .then((res) => res.json())
+          .then((result) => {
+            console.log(result);
+            const newData = data.filter((item) => {
+              return item._id != result._id;
+            });
+            setData(newData);
+          });
     }
 
     const deleteComment=(commentId)=>{
-        fetch(`/deletecomment/${commentId}`,{
+        fetch(`${process.env.REACT_APP_SERVER_BASE_URL}/deletecomment/${commentId}`,{
             method:"delete",
             headers:{
                 "Authorization":"Bearer "+localStorage.getItem("jwt")

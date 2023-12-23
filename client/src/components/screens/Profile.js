@@ -7,7 +7,7 @@ const Profile =()=> {
     const [image,setImage] = useState("")
     const [url,setUrl] = useState(undefined)
    useEffect(()=>{
-        fetch('/myposts',{
+        fetch(`${process.env.REACT_APP_SERVER_BASE_URL}/myposts`,{
             headers:{
                 "Authorization":"Bearer "+localStorage.getItem("jwt")
             }
@@ -33,7 +33,7 @@ const Profile =()=> {
             console.log(data)
             // localStorage.setItem("user",JSON.stringify({...state,pic:data.url}))
             // dispatch({type:"UPDATEPIC",payload:data.url})
-            fetch('/updatepic',{
+            fetch(`${process.env.REACT_APP_SERVER_BASE_URL}/updatepic`,{
                 method:"put",
                 headers:{
                     "Content-Type":"application/json",
