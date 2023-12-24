@@ -17,7 +17,7 @@ const Signin = () => {
       M.toast({ html: "Invalid Email", classes: "#f44336 red" });
       return;
     }
-    fetch(`${process.env.REACT_APP_SERVER_BASE_URL}/signin`, {
+    fetch(`/signin`, {
       method: "post",
       headers: {
         "Content-Type": "application/json",
